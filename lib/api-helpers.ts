@@ -28,7 +28,14 @@ export function createSuccessResponse<T>(
     response.pagination = pagination;
   }
 
-  return NextResponse.json(response);
+  const nextResponse = NextResponse.json(response);
+  
+  // Add CORS headers
+  nextResponse.headers.set('Access-Control-Allow-Origin', '*');
+  nextResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  nextResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  return nextResponse;
 }
 
 /**
@@ -52,7 +59,14 @@ export function createErrorResponse(
     response.errors = errors;
   }
 
-  return NextResponse.json(response, { status: statusCode });
+  const nextResponse = NextResponse.json(response, { status: statusCode });
+  
+  // Add CORS headers
+  nextResponse.headers.set('Access-Control-Allow-Origin', '*');
+  nextResponse.headers.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  nextResponse.headers.set('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+  return nextResponse;
 }
 
 /**

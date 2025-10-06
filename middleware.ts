@@ -216,7 +216,7 @@ export function middleware(request: NextRequest) {
     // ✅ CORS setup
     const origin = request.headers.get('origin');
     const allowedOrigins = isProduction
-      ? [env.NEXT_PUBLIC_APP_URL] // <-- set to your prod domain
+      ? [env.NEXT_PUBLIC_APP_URL, 'https://shavistore.in', 'https://www.shavistore.in'] // <-- set to your prod domain
       : ['http://localhost:3000', 'http://127.0.0.1:3000'];
 
     if (origin && allowedOrigins.includes(origin)) {
